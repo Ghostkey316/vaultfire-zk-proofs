@@ -28,8 +28,8 @@ import {VaultfireTrustAttestation} from "../src/VaultfireTrustAttestation.sol";
 ///   Polygon:   0xdBAD523786971B75A7b1c1CFdCfECDeb59A764B9
 contract DeployVaultfireTrustAttestation is Script {
     // Canonical RISC Zero VerifierRouter addresses
-    address constant VERIFIER_BASE = 0x0b144e07A0826182b6B59788c34b32bfA86fb711;
-    address constant VERIFIER_ARBITRUM = 0x0b144e07A0826182b6B59788c34b32bfA86fb711;
+    address constant VERIFIER_BASE = 0x0b144E07A0826182B6b59788c34b32Bfa86Fb711;
+    address constant VERIFIER_ARBITRUM = 0x0b144E07A0826182B6b59788c34b32Bfa86Fb711;
     address constant VERIFIER_AVALANCHE = 0x0b144E07A0826182B6b59788c34b32Bfa86Fb711;
     address constant VERIFIER_POLYGON = 0xdBAD523786971B75A7b1c1CFdCfECDeb59A764B9;
 
@@ -46,7 +46,7 @@ contract DeployVaultfireTrustAttestation is Script {
         if (chainId == 421614) return VERIFIER_ARBITRUM;     // Arbitrum Sepolia
         if (chainId == 43113) return VERIFIER_AVALANCHE;     // Avalanche Fuji
 
-        revert("Unsupported chain — add verifier address");
+        revert("Unsupported chain - add verifier address");
     }
 
     function run() external {

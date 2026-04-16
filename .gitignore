@@ -5,6 +5,7 @@
 # Foundry
 /contracts/out
 /contracts/cache
+/contracts/broadcast
 /contracts/lib
 
 # RISC Zero build artifacts

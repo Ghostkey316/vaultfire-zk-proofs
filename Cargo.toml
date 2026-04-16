@@ -2,18 +2,19 @@
 resolver = "2"
 members = ["apps", "methods"]
 
+# Always optimize; building and running the guest takes much longer without optimization.
+[profile.dev]
+opt-level = 3
+
+[profile.release]
+debug = 1
+lto = true
+
 [workspace.dependencies]
-alloy-primitives = "=0.8.20"
-alloy-sol-types = "=0.8.20"
-risc0-build = "1.2"
-risc0-zkvm = "1.2"
-risc0-steel = "0.14"
+risc0-build = "^3.0.5"
+risc0-zkvm = "^3.0.5"
 serde = { version = "1.0", features = ["derive"] }
 anyhow = "1.0"
 hex = "0.4"
 tokio = { version = "1", features = ["full"] }
 clap = { version = "4", features = ["derive"] }
-
-[profile.release]
-opt-level = 3
-lto = true

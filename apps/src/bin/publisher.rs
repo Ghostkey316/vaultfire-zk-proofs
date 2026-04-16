@@ -132,6 +132,12 @@ fn current_unix_timestamp() -> u64 {
         .as_secs()
 }
 
+/// Convert a RISC Zero image ID ([u32; 8]) to a hex string
+fn image_id_to_hex(id: &[u32; 8]) -> String {
+    let bytes: Vec<u8> = id.iter().flat_map(|w| w.to_le_bytes()).collect();
+    hex::encode(bytes)
+}
+
 /* ═══════════════════════════════════════════════════════════════════════
    PROOF GENERATION
 ═══════════════════════════════════════════════════════════════════════ */
@@ -174,9 +180,8 @@ fn generate_trust_score_proof(score: u64, threshold: u64, agent: [u8; 20]) -> Re
 
     // Output data for on-chain submission
     println!("═══ ON-CHAIN SUBMISSION DATA ═══");
-    println!("  Image ID:    0x{}", hex::encode(TRUST_SCORE_PROOF_ID));
-    println!("  Journal hex: 0x{}", hex::encode(receipt.journal.bytes));
-    println!("  Seal length: {} bytes", receipt.inner.groth16().map(|g| g.seal.len()).unwrap_or(0));
+    println!("  Image ID:    0x{}", image_id_to_hex(&TRUST_SCORE_PROOF_ID));
+    println!("  Journal hex: 0x{}", hex::encode(&receipt.journal.bytes));
 
     Ok(())
 }
@@ -219,8 +224,8 @@ fn generate_registration_age_proof(registered_at: u64, min_days: u64, agent: [u8
     println!();
 
     println!("═══ ON-CHAIN SUBMISSION DATA ═══");
-    println!("  Image ID:    0x{}", hex::encode(REGISTRATION_AGE_PROOF_ID));
-    println!("  Journal hex: 0x{}", hex::encode(receipt.journal.bytes));
+    println!("  Image ID:    0x{}", image_id_to_hex(&REGISTRATION_AGE_PROOF_ID));
+    println!("  Journal hex: 0x{}", hex::encode(&receipt.journal.bytes));
 
     Ok(())
 }
@@ -236,8 +241,7 @@ fn generate_bond_total_proof(bonds_str: &str, threshold: u128, agent: [u8; 20]) 
     println!("║  Vaultfire ZK Bond Total Proof                  ║");
     println!("╠══════════════════════════════════════════════════╣");
     println!("║  Agent:     0x{}  ║", hex::encode(agent));
-    println!("║  Threshold: {} wei{}", threshold, " ".repeat(29_usize.saturating_sub(threshold.to_string().len())));
-    println!("║  Bonds:     {} bonds [AMOUNTS PRIVATE]{}║", bonds.len(), " ".repeat(19_usize.saturating_sub(bonds.len().to_string().len())));
+    println!("║  Bonds:     {} bonds [AMOUNTS PRIVATE]          ║", bonds.len());
     println!("╚══════════════════════════════════════════════════╝");
     println!();
 
@@ -266,8 +270,8 @@ fn generate_bond_total_proof(bonds_str: &str, threshold: u128, agent: [u8; 20]) 
     println!();
 
     println!("═══ ON-CHAIN SUBMISSION DATA ═══");
-    println!("  Image ID:    0x{}", hex::encode(BOND_TOTAL_PROOF_ID));
-    println!("  Journal hex: 0x{}", hex::encode(receipt.journal.bytes));
+    println!("  Image ID:    0x{}", image_id_to_hex(&BOND_TOTAL_PROOF_ID));
+    println!("  Journal hex: 0x{}", hex::encode(&receipt.journal.bytes));
 
     Ok(())
 }
@@ -276,8 +280,12 @@ fn generate_bond_total_proof(bonds_str: &str, threshold: u128, agent: [u8; 20]) 
    MAIN
 ═══════════════════════════════════════════════════════════════════════ */
 
-#[tokio::main]
-async fn main() -> Result<()> {
+fn main() -> Result<()> {
+    // Initialize tracing
+    tracing_subscriber::fmt()
+        .with_env_filter(tracing_subscriber::filter::EnvFilter::from_default_env())
+        .init();
+
     let cli = Cli::parse();
 
     match cli.command {

@@ -63,16 +63,24 @@ Without ZK proofs, any partner can read an agent's exact trust score, bond amoun
 
 ---
 
-## Supported Chains
+## Deployments
 
-All four Vaultfire chains have canonical RISC Zero verifiers already deployed:
+VaultfireTrustAttestation is live on all four chains:
 
-| Chain | Chain ID | RISC Zero VerifierRouter |
-|-------|----------|--------------------------|
-| **Base** | 8453 | `0x0b144e07a0826182b6b59788c34b32bfa86fb711` |
-| **Arbitrum** | 42161 | `0x0b144e07a0826182b6b59788c34b32bfa86fb711` |
-| **Avalanche** | 43114 | `0x0b144E07A0826182B6b59788c34b32Bfa86Fb711` |
-| **Polygon** | 137 | `0xdBAD523786971B75A7b1c1CFdCfECDeb59A764B9` |
+| Chain | Chain ID | VaultfireTrustAttestation | RISC Zero VerifierRouter |
+|-------|----------|---------------------------|---------------------------|
+| **Base** | 8453 | `0x472dF1dD6D8218D0BF748e910E32861dAb88EDA6` | `0x0b144E07A0826182B6b59788c34b32Bfa86Fb711` |
+| **Avalanche** | 43114 | `0xf92baef9523BC264144F80F9c31D5c5C017c6Da8` | `0x0b144E07A0826182B6b59788c34b32Bfa86Fb711` |
+| **Arbitrum** | 42161 | `0xE2f75A4B14ffFc1f9C2b1ca22Fdd6877E5BD5045` | `0x0b144E07A0826182B6b59788c34b32Bfa86Fb711` |
+| **Polygon** | 137 | `0x8568F4020FCD55915dB3695558dD6D2532599e56` | `0xdBAD523786971B75A7b1c1CFdCfECDeb59A764B9` |
+
+### Image IDs (generated from compiled guest programs)
+
+| Guest Program | Image ID |
+|---------------|----------|
+| `trust_score_proof` | `0x3ccef0f0d6aa3bc53e3b226f021d9b15a2ab4d9b15724fa838fb1ea4a30f527d` |
+| `registration_age_proof` | `0x6f8562d11114397c3990314fbeba9139f9c5412cb5fe8b7573c691454e5d4dd8` |
+| `bond_total_proof` | `0x3bc8520b7d8f99777848e93455f280d91c8a696e5f63c50da9c04061c7c99aef` |
 
 ---
 

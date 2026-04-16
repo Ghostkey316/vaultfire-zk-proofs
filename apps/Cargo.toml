@@ -6,14 +6,12 @@ description = "Host applications for generating and submitting Vaultfire ZK proo
 
 [dependencies]
 vaultfire-zk-methods = { path = "../methods" }
-risc0-zkvm = { workspace = true }
-serde = { workspace = true }
-anyhow = { workspace = true }
-hex = { workspace = true }
-tokio = { workspace = true }
-clap = { workspace = true }
-alloy-primitives = { workspace = true }
-alloy-sol-types = { workspace = true }
+risc0-zkvm = "^3.0.5"
+serde = { version = "1.0", features = ["derive"] }
+anyhow = "1.0"
+hex = "0.4"
+tracing-subscriber = { version = "0.3", features = ["env-filter"] }
+clap = { version = "4", features = ["derive"] }
 
 [[bin]]
 name = "publisher"
