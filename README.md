@@ -42,10 +42,10 @@ Without ZK proofs, any partner can read an agent's exact trust score, bond amoun
                          │ Generates Groth16 receipt
                          ▼
 ┌─────────────────────────────────────────────────────────┐
-│  Host / Publisher (Rust — runs locally or via Bonsai)   │
+│  Host / Publisher (Rust — runs locally or via Boundless) │
 │                                                         │
 │  1. Feeds private inputs to guest                       │
-│  2. Generates proof (local GPU, Bonsai, or Boundless)   │
+│  2. Generates proof (local GPU or Boundless)             │
 │  3. Outputs seal + journal for on-chain submission      │
 └────────────────────────┬────────────────────────────────┘
                          │ Submits proof on-chain
@@ -145,13 +145,14 @@ forge build
 RISC0_DEV_MODE=1 cargo run --release --bin publisher -- \
   trust-score --score 87 --threshold 80 --agent 0xYOUR_AGENT_ADDRESS
 
-# Production mode (real Groth16 proof — requires GPU or Bonsai)
+# Production mode (real Groth16 proof — requires GPU or Boundless)
 RISC0_DEV_MODE=0 cargo run --release --bin publisher -- \
   trust-score --score 87 --threshold 80 --agent 0xYOUR_AGENT_ADDRESS
 
-# Using Bonsai cloud proving
-BONSAI_API_URL=https://api.bonsai.xyz \
-BONSAI_API_KEY=your_key \
+# Using Boundless decentralized proving (replaces Bonsai, which shut down Dec 2025)
+# See https://docs.boundless.network for setup
+BOUNDLESS_MARKET=https://market.boundless.network \
+BOUNDLESS_WALLET_KEY=your_key \
 cargo run --release --bin publisher -- \
   trust-score --score 87 --threshold 80 --agent 0xYOUR_AGENT_ADDRESS
 ```
@@ -200,7 +201,7 @@ DEPLOYER_KEY=$YOUR_KEY forge script script/Deploy.s.sol \
 | Bond total proof verification | ~260,000 | ~$0.002 |
 | Cross-chain proof verification | ~300,000 | ~$0.003 |
 
-Proof generation (off-chain): $0.04–$0.40 via Bonsai/Boundless.
+Proof generation (off-chain): $0.04–$0.40 via Boundless (RISC Zero's decentralized proving marketplace).
 
 ---
 
