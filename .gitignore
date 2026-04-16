@@ -1,0 +1,29 @@
+# Rust
+/target
+**/*.rs.bk
+
+# Foundry
+/contracts/out
+/contracts/cache
+/contracts/lib
+
+# RISC Zero build artifacts
+**/methods/guest/target
+
+# Environment files — NEVER commit secrets
+.env
+.env.*
+*.env
+
+# Private keys
+*.key
+*.pem
+
+# IDE
+.vscode/
+.idea/
+*.swp
+
+# OS
+.DS_Store
+Thumbs.db

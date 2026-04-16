@@ -1,0 +1,20 @@
+[package]
+name = "vaultfire-zk-apps"
+version = "0.1.0"
+edition = "2021"
+description = "Host applications for generating and submitting Vaultfire ZK proofs"
+
+[dependencies]
+vaultfire-zk-methods = { path = "../methods" }
+risc0-zkvm = { workspace = true }
+serde = { workspace = true }
+anyhow = { workspace = true }
+hex = { workspace = true }
+tokio = { workspace = true }
+clap = { workspace = true }
+alloy-primitives = { workspace = true }
+alloy-sol-types = { workspace = true }
+
+[[bin]]
+name = "publisher"
+path = "src/bin/publisher.rs"

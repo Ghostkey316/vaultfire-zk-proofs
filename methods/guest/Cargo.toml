@@ -1,0 +1,36 @@
+[package]
+name = "vaultfire-zk-guest"
+version = "0.1.0"
+edition = "2021"
+
+[workspace]
+
+[dependencies]
+risc0-zkvm = { version = "1.2", default-features = false, features = ["std"] }
+serde = { version = "1.0", features = ["derive"] }
+
+# For cross-chain Steel proofs
+risc0-steel = { version = "0.14", default-features = false, optional = true }
+alloy-primitives = { version = "=0.8.20", default-features = false, optional = true }
+alloy-sol-types = { version = "=0.8.20", default-features = false, optional = true }
+
+[features]
+default = []
+steel = ["risc0-steel", "alloy-primitives", "alloy-sol-types"]
+
+[[bin]]
+name = "trust_score_proof"
+path = "src/bin/trust_score_proof.rs"
+
+[[bin]]
+name = "registration_age_proof"
+path = "src/bin/registration_age_proof.rs"
+
+[[bin]]
+name = "bond_total_proof"
+path = "src/bin/bond_total_proof.rs"
+
+[[bin]]
+name = "cross_chain_trust"
+path = "src/bin/cross_chain_trust.rs"
+required-features = ["steel"]
