@@ -4,7 +4,7 @@
 
 Powered by [RISC Zero](https://risczero.com) zkVM — STARK proofs wrapped in Groth16 SNARKs for cheap on-chain verification across Base, Avalanche, Arbitrum, and Polygon.
 
-> **Disclaimer:** This software is experimental and unaudited. Smart contracts have not been formally audited. Use at your own risk. Nothing in this repository constitutes financial, legal, or investment advice.
+> **⚠️ Alpha Software** — Vaultfire Protocol is live on mainnet and fully functional, but it is in **alpha**. Smart contracts have **not been formally audited** by a third-party security firm. Use at your own risk. Nothing in this repository constitutes financial, legal, or investment advice. See [LICENSE](./LICENSE) for warranty disclaimers.
 
 ---
 
